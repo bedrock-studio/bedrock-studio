@@ -47,7 +47,8 @@
       { "fileMatch": "/*.animation.json", "url": "./schemas/animation.json" },
       { "fileMatch": "/*.entity.json", "url": "./schemas/actor_resource_definition.json" },
       { "fileMatch": "/attachables/*.json", "url": "./schemas/actor_resource_definition.json" },
-      { "fileMatch": "/items/*.json", "url": "./schemas/item.json" }
+      { "fileMatch": "/items/*.json", "url": "./schemas/item.json" },
+      { "fileMatch": "/*.material", "url": "./schemas/materials.json" }
     ]
   },
   "scripts": {
