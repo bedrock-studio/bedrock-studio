@@ -54,10 +54,12 @@
                                     "type": "string"
                                 },
                                 "base_color": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "format": "color"
                                 },
                                 "overlay_color": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "format": "color"
                                 },
                                 "texture_index": {
                                     "type": "integer"
