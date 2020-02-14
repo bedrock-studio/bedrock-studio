@@ -1,44 +1,8 @@
 
 import { CustomCompletion, PathCompletion, PropertyCompletion, StringCompletion } from '../lib/Completions'
 import { PointOfInterest } from '../lib/PointOfInterest'
-import { Identifier, AnimationStateProvider, DummyProvider, JsonKeyProvider, JsonValueProvider, TextureProvider, MaterialProvider } from '../lib/Providers'
-
-const providers = {
-    ANIMATION: new JsonKeyProvider({
-        files: "**/animations/**/*.json",
-        path: ["animations"]
-    }),
-    ANIMATION_CONTROLLER: new JsonKeyProvider({
-        files: "**/animation_controllers/**/*.json",
-        path: ["animation_controllers"]
-    }),
-    ANIMATION_STATE: new AnimationStateProvider(),
-    CLIENT_ENTITY: new JsonValueProvider({
-        files: "**/entity/**/*.json",
-        path: ["minecraft:client_entity", "description", "identifier"]
-    }),
-    MATERIAL: new MaterialProvider(),
-    PARTICLE: new JsonValueProvider({
-        files: "**/particles/**/*.json",
-        path: ["particle_effect", "description", "identifier"]
-    }),
-    RENDER_CONTROLLER: new JsonKeyProvider({
-        files: "**/render_controllers/**/*.json",
-        path: ["render_controllers"]
-    }),
-    SERVER_ENTITY: new JsonValueProvider({
-        files: "**/entities/**/*.json",
-        path: ["minecraft:entity", "description", "identifier"]
-    }),
-    SOUND: new JsonKeyProvider({
-        files: "**/sounds/sound_definitions.json",
-        path: []
-    }),
-    TEXTURE: new TextureProvider(),
-    GEOMETRY: new DummyProvider(),
-    ANIMATION_NICKNAME: new DummyProvider(),
-    MOLANG: new DummyProvider()
-}
+import { Identifier } from '../lib/Providers'
+import * as providers from './IdentifierProviders';
 
 export const pointsOfInterest: PointOfInterest<any>[] = [
     // Animation Controller - Initial State
@@ -48,6 +12,30 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
         isPropertyKey: false,
         completionType: StringCompletion,
         provider: providers.ANIMATION_STATE
+    }),
+    // Animation Controller - Animations - Animation Nickname
+    new PointOfInterest({
+        file: "*.json",
+        path: ["animation_controllers", "{controller}", "animations", "{index}"],
+        isPropertyKey: false,
+        completionType: StringCompletion,
+        provider: providers.ANIMATION_NICKNAME
+    }),
+    // Animation Controller - Animations - Animation Nickname Alt
+    new PointOfInterest({
+        file: "*.json",
+        path: ["animation_controllers", "{controller}", "animations", "{index}", "{nickname}"],
+        isPropertyKey: true,
+        completionType: PropertyCompletion,
+        provider: providers.ANIMATION_NICKNAME
+    }),
+    // Animation Controller - Animations - Animation Nickname Alt - Molang
+    new PointOfInterest({
+        file: "*.json",
+        path: ["animation_controllers", "{controller}", "animations", "{index}", "{nickname}"],
+        isPropertyKey: false,
+        completionType: CustomCompletion,
+        provider: providers.MOLANG
     }),
     // Animation Controller - Transitions - To State
     new PointOfInterest({
@@ -64,6 +52,14 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
         isPropertyKey: false,
         completionType: CustomCompletion,
         provider: providers.MOLANG
+    }),
+    // Animation - Bone
+    new PointOfInterest({
+        file: "*.json",
+        path: ["animations", "{animation}", "bones", "{bone}"],
+        isPropertyKey: true,
+        completionType: PropertyCompletion,
+        provider: providers.BONE
     }),
     // Animation - Bone - Transform - Molang
     new PointOfInterest({
@@ -110,7 +106,15 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
         file: "*.json",
         path: ["minecraft:client_entity", "description", "scripts", "pre_animation", "{index}"],
         isPropertyKey: false,
-        completionType: StringCompletion,
+        completionType: CustomCompletion,
+        provider: providers.MOLANG
+    }),
+    // Client Entity - Scripts - Initialize - Molang
+    new PointOfInterest({
+        file: "*.json",
+        path: ["minecraft:client_entity", "description", "scripts", "initialize", "{index}"],
+        isPropertyKey: false,
+        completionType: CustomCompletion,
         provider: providers.MOLANG
     }),
     // Client Entity - Scripts - Animate
@@ -127,7 +131,7 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
         path: ["minecraft:client_entity", "description", "animations", "{nickname}"],
         isPropertyKey: false,
         completionType: StringCompletion,
-        provider: providers.ANIMATION
+        provider: providers.ANIMATION_OR_CONTROLLER
     }),
     // Client Entity - Particle Effects
     new PointOfInterest({
