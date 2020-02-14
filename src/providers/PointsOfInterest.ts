@@ -7,7 +7,6 @@ import * as providers from './IdentifierProviders';
 export const pointsOfInterest: PointOfInterest<any>[] = [
     // Animation Controller - Initial State
     new PointOfInterest({
-        file: "*.json",
         path: ["animation_controllers", "{controller}", "initial_state"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -15,7 +14,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Animation Controller - Animations - Animation Nickname
     new PointOfInterest({
-        file: "*.json",
         path: ["animation_controllers", "{controller}", "animations", "{index}"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -23,7 +21,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Animation Controller - Animations - Animation Nickname Alt
     new PointOfInterest({
-        file: "*.json",
         path: ["animation_controllers", "{controller}", "animations", "{index}", "{nickname}"],
         isPropertyKey: true,
         completionType: PropertyCompletion,
@@ -31,7 +28,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Animation Controller - Animations - Animation Nickname Alt - Molang
     new PointOfInterest({
-        file: "*.json",
         path: ["animation_controllers", "{controller}", "animations", "{index}", "{nickname}"],
         isPropertyKey: false,
         completionType: CustomCompletion,
@@ -39,7 +35,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Animation Controller - Transitions - To State
     new PointOfInterest({
-        file: "*.json",
         path: ["animation_controllers", "{controller}", "states", "{state}", "transitions", "{index}", "{toState}"],
         isPropertyKey: true,
         completionType: PropertyCompletion,
@@ -47,7 +42,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Animation Controller - Transitions - To State - Molang
     new PointOfInterest({
-        file: "*.json",
         path: ["animation_controllers", "{controller}", "states", "{state}", "transitions", "{index}", "{toState}"],
         isPropertyKey: false,
         completionType: CustomCompletion,
@@ -55,7 +49,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Animation - Bone
     new PointOfInterest({
-        file: "*.json",
         path: ["animations", "{animation}", "bones", "{bone}"],
         isPropertyKey: true,
         completionType: PropertyCompletion,
@@ -63,7 +56,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Animation - Bone - Transform - Molang
     new PointOfInterest({
-        file: "*.json",
         path: ["animations", "{animation}", "bones", "{bone}", "{transform}", "{axis}"],
         isPropertyKey: false,
         completionType: CustomCompletion,
@@ -71,7 +63,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Identifier
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "identifier"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -79,7 +70,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Materials
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "materials", "{nickname}"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -87,7 +77,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Textures
     new PointOfInterest<Identifier>({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "textures", "{nickname}"],
         isPropertyKey: false,
         completionType: PathCompletion,
@@ -95,7 +84,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Geometry
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "geometry", "{nickname}"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -103,7 +91,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Scripts - Pre-Animation - Molang
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "scripts", "pre_animation", "{index}"],
         isPropertyKey: false,
         completionType: CustomCompletion,
@@ -111,7 +98,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Scripts - Initialize - Molang
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "scripts", "initialize", "{index}"],
         isPropertyKey: false,
         completionType: CustomCompletion,
@@ -119,7 +105,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Scripts - Animate
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "scripts", "animate", "{index}"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -127,7 +112,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Animations
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "animations", "{nickname}"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -135,7 +119,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Particle Effects
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "particle_effects", "{nickname}"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -143,7 +126,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Animation Controllers
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "animation_controllers", "{index}", "{nickname}"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -151,7 +133,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Render Controllers
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "render_controllers", "{index}"],
         isPropertyKey: false,
         completionType: StringCompletion,
@@ -159,7 +140,6 @@ export const pointsOfInterest: PointOfInterest<any>[] = [
     }),
     // Client Entity - Render Controllers - Molang
     new PointOfInterest({
-        file: "*.json",
         path: ["minecraft:client_entity", "description", "render_controllers", "{index}", "{controller}"],
         isPropertyKey: true,
         completionType: PropertyCompletion,

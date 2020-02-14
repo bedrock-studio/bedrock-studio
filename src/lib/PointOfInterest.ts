@@ -9,7 +9,6 @@ export type CompletionItemConstructor<T = Identifier> = new (item: T, data: Docu
 export type CompletionListConstructor<T = Identifier> = new (items: T[], data: DocumentData) => vscode.CompletionList;
 
 export class PointOfInterest<T> {
-    public file!: string | string[];
     public path!: JSONPath;
     public isPropertyKey!: boolean;
     public completionType!: CompletionItemConstructor<T> | CompletionListConstructor<T>;
