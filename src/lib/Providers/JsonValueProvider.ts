@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import { JSONPath, parseTree, findNodeAtLocation, getNodeValue } from "jsonc-parser";
+import { JSONPath, parseTree, getNodeValue } from "jsonc-parser";
 
 import { IdentifierProvider, Identifier } from "./IdentifierProvider";
 import { nodeToRange, getMatchingNodes, compareMatches } from '../../providers/util';

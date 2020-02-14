@@ -11,7 +11,6 @@ export class JsonKeyProvider implements IdentifierProvider {
     public path!: JSONPath;
     constructor(init: Partial<JsonKeyProvider> & { path: JSONPath }) {
         Object.assign(this, init);
-        this.path.pop();
     }
     public async getAllIdentifiers({ match }: DocumentData) {
         const identifiers: Identifier[] = [];

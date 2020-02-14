@@ -11,7 +11,7 @@ export interface Identifier {
 
 export interface Provider<T = Identifier> {
     getAllIdentifiers(data: DocumentData): Async<Array<T>>;
-    getMatchingIdentifiers(name: string, data: DocumentData): Async<Array<T>>;
+    getMatchingIdentifiers(name: string, data: DocumentData): Async<Array<Identifier>>;
 }
 
 export type IdentifierProvider = Provider;
