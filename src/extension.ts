@@ -1,25 +1,24 @@
-import * as vscode from 'vscode'
+import * as vscode from 'vscode';
 
-import DefinitionProvider from './providers/DefinitionProvider'
-import CompletionProvider from './providers/CompletionProvider'
+import { Project } from './lib/Project';
+
+const jsonFileSelector = [
+  { scheme: 'file', language: 'json' },
+  { scheme: 'file', language: 'jsonc' }
+];
 
 export function activate(context: vscode.ExtensionContext) {
-  const definitionProvider = new DefinitionProvider()
-  const completionProvider = new CompletionProvider()
 
-  console.log('Congratulations, your extension "vscode-bedrock-definitions" is now active!')
+  const project = new Project();
 
-  let disposableDefinition = vscode.languages.registerDefinitionProvider([
-    { scheme: 'file', language: 'json' }, // regular json
-    { scheme: 'file', language: 'jsonc' } // json with comments
-  ], definitionProvider)
+  context.subscriptions.push(vscode.languages.registerCompletionItemProvider(jsonFileSelector, project, '.', ':', '/'));
+  context.subscriptions.push(vscode.languages.registerHoverProvider(jsonFileSelector, project));
+  context.subscriptions.push(vscode.languages.registerDefinitionProvider(jsonFileSelector, project));
+  context.subscriptions.push(vscode.languages.registerReferenceProvider(jsonFileSelector, project));
+  context.subscriptions.push(vscode.languages.registerDocumentHighlightProvider(jsonFileSelector, project));
+  context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(jsonFileSelector, project));
+  context.subscriptions.push(vscode.languages.registerRenameProvider(jsonFileSelector, project));
 
-  let disposableCompletion = vscode.languages.registerCompletionItemProvider([
-    { scheme: 'file', language: 'json' }, // regular json
-    { scheme: 'file', language: 'jsonc' } // json with comments
-  ], completionProvider, '.', ':', '/') // activate when typing a period, colon, or forward slash
-
-  context.subscriptions.push(disposableDefinition, disposableCompletion)
 }
 
-export function deactivate() {}
+export function deactivate() { }
