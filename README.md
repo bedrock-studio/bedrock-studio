@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    <img src="./bedrock_studio.512.png" alt="logo" width="256">
+    <img src="./resources/bedrock_studio.512.png" alt="logo" width="256">
   <br><br>
   Bedrock Studio
   <br>
