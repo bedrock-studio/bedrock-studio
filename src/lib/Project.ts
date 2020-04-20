@@ -31,7 +31,7 @@ export class Project implements vscode.CompletionItemProvider, vscode.HoverProvi
     /**
      * Loads all available documents from the workspace.
      */
-    public async loadAllDocuments() {
+    public async loadAllDocuments(): Promise<void> {
 
         // Determine the files that need loaded
         const filesToLoad = this.documentTypes
@@ -50,7 +50,7 @@ export class Project implements vscode.CompletionItemProvider, vscode.HoverProvi
     /**
      * Ensures that symbol references in all files have been resolved
      */
-    public ensureResolvedReferences() {
+    public ensureResolvedReferences(): void {
         for (const document of this.loadedDocuments.values()) {
             document.ensureResolvedReferences();
         }
@@ -67,7 +67,7 @@ export class Project implements vscode.CompletionItemProvider, vscode.HoverProvi
 
         // Check for an existing document
         // Sidenote: If we ever need to make this function async, change this
-        // such that we don't start loading a document while it's already loading 
+        // such that we don't start loading a document while it's already loading
         const existingDocument = this.loadedDocuments.get(vsdocument);
         if (existingDocument)
             return existingDocument;
@@ -77,7 +77,7 @@ export class Project implements vscode.CompletionItemProvider, vscode.HoverProvi
             .Where(([type]) => !!vscode.languages.match(type.selector, vsdocument))
             .Select(([_, value]) => value)
             .ToArray();
-            
+
         // Try each loader
         for (const loader of matchingLoaders) {
             const document = loader.tryLoad(vsdocument);
@@ -93,7 +93,7 @@ export class Project implements vscode.CompletionItemProvider, vscode.HoverProvi
      * Unloads a document.
      * @param vsdocument The document to unload.
      */
-    public unloadDocument(vsdocument: vscode.TextDocument) {
+    public unloadDocument(vsdocument: vscode.TextDocument): void {
         const existingDocument = this.loadedDocuments.get(vsdocument);
         if (existingDocument) {
             existingDocument.destroy();
@@ -128,7 +128,6 @@ export class Project implements vscode.CompletionItemProvider, vscode.HoverProvi
     public provideReferences(vsdocument: vscode.TextDocument, position: vscode.Position, context: vscode.ReferenceContext, token: vscode.CancellationToken): vscode.ProviderResult<vscode.Location[]> {
         const document = this.tryLoadDocument(vsdocument, true);
         if (document) {
-            const offset = vsdocument.offsetAt(position);
             document.ensureResolvedReferences();
             return document.getMatchingSymbols(position)
                 .SelectMany(s => s.references)

@@ -12,7 +12,7 @@ export class AnimationControllerDocument extends JsonDocument<AnimationControlle
     public static readonly filePathFilter = ["/animation_controllers/*.json", "/*.animation_controllers.json"];
     public static readonly jsonPathFilter = [["animation_controllers"]];
     public static readonly documentLoader = JsonDocumentLoader;
-    public static tryLoad(project: Project, document: vscode.TextDocument, root: Node) {
+    public static tryLoad(project: Project, document: vscode.TextDocument, root: Node): AnimationControllerDocument {
         return new AnimationControllerDocument(project, document, root);
     }
 
@@ -22,7 +22,7 @@ export class AnimationControllerDocument extends JsonDocument<AnimationControlle
         this.parseContent();
     }
 
-    private parseContent() {
+    private parseContent(): void {
 
         // Get the animation controllers list
         const controllersNode = findNodeAtLocation(this.root, ["animation_controllers"]);

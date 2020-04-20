@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import { Node, getNodeValue } from 'jsonc-parser';
+import { Node } from 'jsonc-parser';
 
 export type JsonPathSegment = string | number;
 export type JsonPath = readonly JsonPathSegment[];
@@ -10,12 +10,12 @@ export function isRecord(thing: unknown): thing is Record<any, any> {
 }
 
 export function getValueAtPath<T>(object: Record<string | number, any>, path: Array<string | number>): T {
-    var cv = object;
+    let cv = object;
     for (let i = 0; i < path.length && isRecord(cv); cv = cv[path[i++]]);
     return cv as T;
 }
 
-export function nodeToRange(document: vscode.TextDocument, node: Node) {
+export function nodeToRange(document: vscode.TextDocument, node: Node): vscode.Location {
     return new vscode.Location(
         document.uri,
         new vscode.Range(
@@ -43,6 +43,20 @@ export function matchPaths(a: JsonPath, b: JsonPath): null | Record<string, stri
         }
     }
     return params;
+}
+
+/**
+ * Returns a generator that can be used to iterate through all key-value nodes of the given object node.
+ * @param node The node
+ */
+export function* iterateProperties(node: Node): Generator<[Node, Node], void, void> {
+    if (node.type === "object" && node.children) {
+        for (const propertyNode of node.children) {
+            if (propertyNode.type === "property" && propertyNode.children && propertyNode.children.length === 2) {
+                yield propertyNode.children as [Node, Node];
+            }
+        }
+    }
 }
 
 export type NodeMatch = [JsonPath, Record<string, string | number>, Node]
@@ -83,22 +97,8 @@ export function getMatchingNodes(root: Node, path: JsonPath): NodeMatch[] {
 }
 
 /**
- * Returns a generator that can be used to iterate through all key-value nodes of the given object node. 
- * @param node The node
- */
-export function* iterateProperties(node: Node): Generator<[Node, Node], void, void> {
-    if (node.type === "object" && node.children) {
-        for (const propertyNode of node.children) {
-            if (propertyNode.type === "property" && propertyNode.children && propertyNode.children.length === 2) {
-                yield propertyNode.children as [Node, Node];
-            }
-        }
-    }
-}
-
-/**
  * Compares the properties of two objects.
- * 
+ *
  * Return values:
  * - `true` - All properties are identical
  * - `-1` - `a` has extra properties, but is otherwise identical

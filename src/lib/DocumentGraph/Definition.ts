@@ -53,7 +53,7 @@ export class Definition<TDoc extends Document<any, any, any>> {
      * The range in the document.
      */
     public readonly range: vscode.Range;
-    
+
     /**
      * Creates a new Definition.
      * @param project The project.
@@ -85,7 +85,7 @@ export class Definition<TDoc extends Document<any, any, any>> {
     /**
      * Destroys all links controlled by this definition or it's children.
      */
-    public destroy() {
+    public destroy(): void {
         this.childDefinitions.forEach(d => d.destroy());
         this.childDefinitions.clear();
         this.childReferences.forEach(r => r.destroy());
@@ -101,7 +101,7 @@ export class Definition<TDoc extends Document<any, any, any>> {
         this.childDefinitions.forEach(d => d.ensureResolvedReferences());
         this.childReferences.forEach(r => r.ensureResolved());
     }
-    
+
     /**
      * Gets any symbols that match the reference at the specified location.
      * @param position The position.

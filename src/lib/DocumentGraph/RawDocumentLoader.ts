@@ -1,3 +1,5 @@
+import * as vscode from 'vscode';
+
 import { Project } from '../Project';
 import { Document } from './Document';
 import { DocumentLoader } from './DocumentLoader';

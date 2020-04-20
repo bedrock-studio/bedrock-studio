@@ -1,7 +1,7 @@
 import { Node as JsonNode } from 'jsonc-parser';
 
 import { AnimationControllerNicknameDefinition } from "./Definitions";
-import { Definition, JsonDocument, JsonReference, Collection } from './DocumentGraph';
+import { Definition, JsonDocument, JsonReference, Collection, Scope } from './DocumentGraph';
 import { Project } from './Project';
 import { AnimationControllerSymbol, ClientEntitySymbol, AnimationNicknameSymbol } from './Symbols';
 

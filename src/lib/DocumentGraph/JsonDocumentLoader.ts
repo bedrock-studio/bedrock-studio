@@ -3,6 +3,7 @@ import { Project } from '../Project';
 import { JsonDocument } from './JsonDocument';
 import { JsonDocumentType } from './JsonDocumentType';
 import { DocumentLoader } from './DocumentLoader';
+
 export class JsonDocumentLoader<TDoc extends JsonDocument<TDoc>> extends DocumentLoader<JsonDocumentLoader<TDoc>, TDoc, JsonDocumentType<TDoc>> {
     public static selector = "json";
     public static build<T extends JsonDocument<T>>(project: Project, documentTypes: Array<JsonDocumentType<T>>) {

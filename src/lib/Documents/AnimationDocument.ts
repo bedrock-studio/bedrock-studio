@@ -9,7 +9,7 @@ export class AnimationDocument extends JsonDocument<AnimationDocument> {
     public static readonly filePathFilter = ["/*.entity.json"];
     public static readonly jsonPathFilter = [["minecraft:client_entity"]];
     public static readonly documentLoader = JsonDocumentLoader;
-    public static tryLoad(project: Project, document: vscode.TextDocument, root: JsonNode) {
+    public static tryLoad(project: Project, document: vscode.TextDocument, root: JsonNode): AnimationDocument {
         return new AnimationDocument(project, document, root);
     }
 
