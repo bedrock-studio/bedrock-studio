@@ -1,10 +1,14 @@
-.vscode/**
-.vscode-test/**
-out/test/**
-src/**
-.gitignore
-vsc-extension-quickstart.md
-**/tsconfig.json
-**/tslint.json
-**/*.map
-**/*.ts
+# Ignore everything
+*
+*/**
+
+# Whitelist
+!node_modules/jsonc-parser
+!out
+!schemas
+!.vscodeignore
+!bedrock_studio.128.png
+!CHANGELOG.md
+!LICENSE
+!package.json
+!README.md

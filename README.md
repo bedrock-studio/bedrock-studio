@@ -1,52 +1,34 @@
-# Bedrock Definitions
+<h1 align="center">
+  <br>
+    <img src="./bedrock_studio.500.png" alt="logo" width="256">
+  <br><br>
+  Bedrock Studio
+  <br>
+  <br>
+</h1>
 
-Go-to Bedrock definitions and auto-complete for Visual Studio Code
+Bedrock Studio is a Visual Studio Code extension for developing Minecraft Bedrock Add-Ons.
 
-## What does it do?
-[Video of go-to definition in action](https://streamable.com/k3bel)
+Originally based on [vscode-bedrock-definitions](https://github.com/destruc7i0n/vscode-bedrock-definitions), Bedrock Studio has been completely rerwitten with tons of new features and tools to make add-on developement fun and easy.
 
 ## Features
+Bedrock Studio adds support for many of VS Code's language features inside add-on files, including:
+- [Code Completion](https://code.visualstudio.com/docs/editor/intellisense#_intellisense-features)
+- [Go to Definition](https://code.visualstudio.com/docs/editor/editingevolved#_go-to-definition)
+- Find All References
+- [Go to Symbol](https://code.visualstudio.com/docs/editor/editingevolved#_go-to-symbol)
+- [Rename Symbol](https://code.visualstudio.com/docs/editor/editingevolved#_rename-symbol)
 
-- Ctrl (or Cmd on macOS) and hover over definitions to preview the definition in the file
-- Ctrl+click (Cmd+click on macOS) or hit F12 to go to the definition file
-- Auto-complete for parts of the definition
+## Roadmap
+These are upcomming features that will be added in the future:
 
-- Go-to definition works for the following types of definitions
-  - Client definitions
-    - Entity identifier*
-    - Render Controllers
-    - Geometry
-    - Materials
-    - Particle Effects
-    - Materials
-    - Animations / Animation Controllers
-    - scripts/animate (go to definition in same file)
-  - Server (Behaviour) definitions 
-    - Animations / Animation Controllers
-    - scripts/animate (go to definition in same file)
-    - Events (go to the event from the usage in the file)
-    - Component Groups (go to component groups from the usage in events)
-
-- Auto-complete works for the following types of definitions
-  - Client definitions
-    - Entity identifier*
-    - Render Controllers
-    - Geometry
-    - Particle Effects
-    - Textures
-    - Animations / Animation Controllers
-  - Server (Behaviour) definitions 
-    - Animations / Animation Controllers
-
-<sub><sup>*If the behaviour pack counterpart is open in the workspace</sup></sub>
-
-## Known Issues
-
-- This will get the first file which has the definition and take you there, so it may not always go to the proper file if there are multiple with the same definition
+- File Templates
+- Smart Diagnostics
+- Common Code Actions
 
 ## Development
 
-To develop, install the packages with `yarn install`, open in Visual Studio Code, and hit F5 to start the development server.
+Run `npm install` to install dependencies, then open the project in Visual Studio Code and hit F5 to start the development server.
 
 ## Contributing
 
@@ -54,4 +36,4 @@ Contributions are welcome!
 
 ## License
 
-MIT
+Licensed under the [MIT](./LICENSE) license.
